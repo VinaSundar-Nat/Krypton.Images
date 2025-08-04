@@ -1,0 +1,41 @@
+version: '3.2'
+
+services:
+    postgress:
+      container_name: kr_postgres
+      image: kr_db_postgres:${RUNTIME_VERSION}
+      labels:
+        com.acc.data.description: "KR database - postgres"
+      restart: unless-stopped
+      env_file:
+        - .docker/.env/postgres.prod.env
+      build:
+        context: .
+        dockerfile: .docker/postgres.dockerfile
+        cache_from:
+          - postgres:latest       
+      volumes:
+        - 'kr_dbvolume:/var/lib/postgresql/data'
+      ports:
+        - "5432:5432"
+      networks:
+        kr_network: 
+          ipv4_address: 192.168.10.3
+
+    neo4j:
+      image: neo4j:5.15-community
+      container_name: kr_db_neo4j
+      restart: unless-stopped
+      ports:
+        - "7474:7474"  # HTTP
+        - "7687:7687"  # Bolt
+      env_file:
+        - .docker/.env/neo4j.prod.env
+      volumes:
+        - kr_graphvolume:/data
+        - kr_graphvolume:/logs
+        - kr_graphvolume:/var/lib/neo4j/import
+        - kr_graphvolume:/plugins
+      networks:
+        kr_network: 
+          ipv4_address: 192.168.10.19

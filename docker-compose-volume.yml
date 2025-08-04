@@ -1,0 +1,33 @@
+version: '3.2'
+             
+volumes:   
+      kr_datavolume:
+        labels:
+          - "kr.component.description=component volume"
+          
+      kr_dbvolume:
+        labels:
+          - "kr.database.description=database volume"
+        driver: local
+        driver_opts:
+          type: none
+          device: .volume/postgres
+          o: bind
+
+      kr_graphvolume:
+        labels:
+          - "kr.graph.description=graph database volume"
+        driver: local
+        driver_opts:
+          type: none
+          device: ".volume/neo4j"
+          o: bind
+          
+      kr_eventvolume:
+        labels:
+          - "kr.event.description=kafka events"        
+        driver: local
+        driver_opts:
+          type: none
+          device: ".volume/kafka"
+          o: bind
