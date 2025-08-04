@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+    redis:
+      container_name: kr_redis
+      image: kr_cache_redis:${RUNTIME_VERSION}
+      labels:
+        com.acc.cache.description: "KR cache store - redis"
+      restart: always     
+      build:
+        context: .
+        dockerfile: .docker/redis.dockerfile
+      ports:
+        - "6379:6379"
+      networks:
+        kr_network: 
+          ipv4_address: 192.168.10.2
