@@ -12,8 +12,7 @@ destroy='false'
 prune='false'
 includeComp='true'
 dbInclude='true'
-eventInclude='true'
-
+eventInclude='false'
 
 # SSL requirements
 doc_api_name='kr_core_doc_npd_api'
