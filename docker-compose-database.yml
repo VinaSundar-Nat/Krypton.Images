@@ -23,9 +23,16 @@ services:
           ipv4_address: 192.168.10.3
 
     neo4j:
-      image: neo4j:5.15-community
+      image: kr_db_neo4j:${RUNTIME_VERSION}
       container_name: kr_db_neo4j
       restart: unless-stopped
+      labels:
+        com.acc.data.description: "KR research database - neo4j"
+      build:
+        context: .
+        dockerfile: .docker/neo4j.dockerfile
+        cache_from:
+          - neo4j:5.25-community
       ports:
         - "7474:7474"  # HTTP
         - "7687:7687"  # Bolt

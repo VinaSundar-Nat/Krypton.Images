@@ -409,8 +409,8 @@ ASALocalRun/
 
 # keys
 volume/
-postgres/
-neo4j/
-kafka/
+.volume/postgres/
+.volume/neo4j/
+.volume/kafka/
 
 .cert/.files/
