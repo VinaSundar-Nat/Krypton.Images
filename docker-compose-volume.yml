@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.5'
              
 volumes:   
       kr_datavolume:
@@ -8,11 +8,11 @@ volumes:
       kr_dbvolume:
         labels:
           - "kr.database.description=database volume"
-        driver: local
-        driver_opts:
-          type: none
-          device: .volume/postgres
-          o: bind
+        # driver: local
+        # driver_opts:
+        #   type: none
+        #   device: .volume/postgres
+        #   o: bind
 
       kr_graphvolume:
         labels:
