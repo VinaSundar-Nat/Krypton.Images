@@ -27,8 +27,8 @@ if [ -n "$POSTGRES_DB" ]; then
     docker cp ./db-create.sh "$DB_CN":/tmp/db-create.sh
     docker cp ./db-vars.sh "$DB_CN":/tmp/db-vars.sh
     
-    # Make script executable and run it
-    docker exec "$DB_CN" chmod +x /tmp/db-create.sh
+    # Make script executable and run it (inside the container as postgres user)
+    # docker exec "$DB_CN" chmod +x /tmp/db-create.sh
     docker exec "$DB_CN" bash -c "cd /tmp && ./db-create.sh"
     
     # Clean up (optional)

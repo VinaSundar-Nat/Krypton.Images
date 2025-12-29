@@ -19,7 +19,7 @@ function create_db() {
 EOSQL
 }
 
-# Function to create PostGIS extensions
+# Function to create PostGIS extensions - removed as failure with superuser - should be manually installed
 function create_ext() {
     local user=$1
     local database=$2
@@ -60,12 +60,6 @@ function initiate_create_dbs() {
             continue
         fi
         
-        # Create extensions
-        if create_ext "$user" "$db" "$pass"; then
-            echo "Successfully created extensions in database '$db'"
-        else
-            echo "Failed to create extensions in database '$db'"
-        fi
         
         echo "---"
     done

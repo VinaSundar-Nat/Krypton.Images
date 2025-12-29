@@ -1,14 +1,17 @@
-version: '3.2'
+version: '3.5'
 
 services:
     postgress:
       container_name: kr_postgres
       image: kr_db_postgres:${RUNTIME_VERSION}
+      user: postgres
       labels:
         com.acc.data.description: "KR database - postgres"
       restart: unless-stopped
       env_file:
         - .docker/.env/postgres.prod.env
+      environment:
+        PGDATA: /var/lib/postgresql/data/pgdata
       build:
         context: .
         dockerfile: .docker/postgres.dockerfile
