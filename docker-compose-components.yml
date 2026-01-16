@@ -15,3 +15,20 @@ services:
       networks:
         kr_network: 
           ipv4_address: 192.168.10.2
+
+    mongo:
+      container_name: kr_mongo
+      image: kr_database_mongo:${RUNTIME_VERSION}
+      labels:
+        com.acc.database.description: "KR database - mongo"
+      restart: always
+      build:
+        context: .
+        dockerfile: .docker/mongo.dockerfile
+      env_file:
+        - .docker/.env/mongo.prod.env
+      ports:
+        - "27017:27017"
+      networks:
+        kr_network:
+          ipv4_address: 192.168.10.14

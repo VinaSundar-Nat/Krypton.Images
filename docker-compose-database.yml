@@ -4,6 +4,7 @@ services:
     postgress:
       container_name: kr_postgres
       image: kr_db_postgres:${RUNTIME_VERSION}
+      platform: linux/arm64
       user: postgres
       labels:
         com.acc.data.description: "KR database - postgres"
